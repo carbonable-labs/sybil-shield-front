@@ -11,6 +11,7 @@ let Graph = lazy(() => import("~/components/Graph"));
 
 export default function Index() {
   const [menuOpen, setMenuOpen] = useState(!isMobile);
+  const [graphData, setGraphData] = useState<any>({});
 
   const toggleMenu = useCallback(() => setMenuOpen(!menuOpen), [setMenuOpen, menuOpen]);
 
@@ -22,17 +23,17 @@ export default function Index() {
     <div className="mx-auto" id="outer-container">
       <Header toggleMenu={toggleMenu} menuOpen={menuOpen} />
       <SettingsMobile handleStateChange={handleStateChange} closeMenu={closeMenu} menuOpen={menuOpen} />
-      <div className="w-full h-[calc(100vh_-_66px)] lg:h-[calc(100vh_-_80px)] flex bg-mint">
+      <div className="w-full h-[calc(100vh_-_66px)] lg:h-[calc(100vh_-_80px)] flex">
         {!isMobile && 
           <div className="w-3/12 rounded-l-2xl">
             <Settings />
           </div> 
         }
         <div className={isMobile ? "w-full" : "w-9/12" }>
-          <Contract />
+          <Contract setGraphData={setGraphData} />
           <ClientOnly>
             <Suspense fallback="">
-              <Graph />
+              <Graph graphData={graphData} />
             </Suspense>
           </ClientOnly>
         </div> 
