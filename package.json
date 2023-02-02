@@ -11,9 +11,11 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.0.14",
+    "@radix-ui/react-slider": "^1.1.0",
     "@remix-run/node": "^1.12.0",
     "@remix-run/react": "^1.12.0",
     "@remix-run/serve": "^1.12.0",
+    "colorjs.io": "^0.4.3",
     "d3-force": "^3.0.0",
     "isbot": "^3.6.5",
     "react": "^18.2.0",
