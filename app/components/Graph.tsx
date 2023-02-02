@@ -1,4 +1,5 @@
 import { ForceGraph3D } from "react-force-graph";
+import { getColorByPercentage } from "~/utils/graphUtils";
 
 export default function Graph({ graphData }: { graphData: any }) {
     if (graphData.hasOwnProperty("nodes")) { 
@@ -8,7 +9,7 @@ export default function Graph({ graphData }: { graphData: any }) {
                     graphData={graphData}
                     linkWidth={2}
                     backgroundColor="#13151C"
-                    nodeColor={(node: any) => node.val === "O" ? "#00FF00" : "#FF0000"}
+                    nodeColor={(node: any) => node.val < 50 ? "#FFF" : getColorByPercentage(node.val)}
                 />
             </div>
         );
