@@ -12,6 +12,9 @@ let Graph = lazy(() => import("~/components/Graph"));
 export default function Index() {
   const [menuOpen, setMenuOpen] = useState(!isMobile);
   const [graphData, setGraphData] = useState<any>({});
+  const [threshold, setThreshold] = useState(50);
+  const [graphStyle, setGraphStyle] = useState(false);
+  const [contract, setContract] = useState("");
 
   const toggleMenu = useCallback(() => setMenuOpen(!menuOpen), [setMenuOpen, menuOpen]);
 
@@ -26,14 +29,14 @@ export default function Index() {
       <div className="w-full h-[calc(100vh_-_66px)] lg:h-[calc(100vh_-_80px)] flex">
         {!isMobile && 
           <div className="w-3/12 rounded-l-2xl">
-            <Settings />
+            <Settings setThreshold={setThreshold} threshold={threshold} setGraphStyle={setGraphStyle} graphStyle={graphStyle} />
           </div> 
         }
         <div className={isMobile ? "w-full" : "w-9/12" }>
-          <Contract setGraphData={setGraphData} />
+          <Contract setGraphData={setGraphData} setContract={setContract} />
           <ClientOnly>
             <Suspense fallback="">
-              <Graph graphData={graphData} />
+              <Graph graphData={graphData} threshold={threshold} graphStyle={graphStyle} contract={contract} />
             </Suspense>
           </ClientOnly>
         </div> 

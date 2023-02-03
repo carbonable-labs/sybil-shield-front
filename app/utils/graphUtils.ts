@@ -7,10 +7,10 @@ import Color from "colorjs.io";
  * @returns string
  */
 export function getColorByPercentage(percentage: number): string {
-    const gradient = new Color('#29A46F').range('#C82538', {
+    const gradient = new Color('#FFF').range('#C82538', {
         space: 'lch',
         outputSpace: 'srgb',
     });
 
-    return gradient(percentage/100).toString(16);
+    return gradient(percentage).toString(16);
 }
