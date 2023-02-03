@@ -537,6 +537,22 @@ video {
   left: 2px;
 }
 
+.right-6 {
+  right: 1.5rem;
+}
+
+.bottom-6 {
+  bottom: 1.5rem;
+}
+
+.right-4 {
+  right: 1rem;
+}
+
+.right-2 {
+  right: 0.5rem;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -582,6 +598,14 @@ video {
   height: 100%;
 }
 
+.h-8 {
+  height: 2rem;
+}
+
+.h-6 {
+  height: 1.5rem;
+}
+
 .w-full {
   width: 100%;
 }
@@ -604,6 +628,10 @@ video {
 
 .w-9\/12 {
   width: 75%;
+}
+
+.w-6 {
+  width: 1.5rem;
 }
 
 .cursor-pointer {
