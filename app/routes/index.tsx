@@ -37,18 +37,18 @@ export default function Index() {
   return (
     <div className="mx-auto" id="outer-container">
       <Header toggleMenu={toggleMenu} menuOpen={menuOpen} />
-      <SettingsMobile handleStateChange={handleStateChange} closeMenu={closeMenu} menuOpen={menuOpen} setThreshold={setThreshold} threshold={threshold} setGraphStyle={setDisplayIn3D} graphStyle={displayIn3D} />
+      <SettingsMobile handleStateChange={handleStateChange} closeMenu={closeMenu} menuOpen={menuOpen} setThreshold={setThreshold} threshold={threshold} setDisplayIn3D={setDisplayIn3D} displayIn3D={displayIn3D} />
       <div className="w-full h-[calc(100vh_-_66px)] lg:h-[calc(100vh_-_80px)] flex">
         {!isMobile && 
           <div className="w-3/12 rounded-l-2xl">
-            <Settings setThreshold={setThreshold} threshold={threshold} setGraphStyle={setDisplayIn3D} graphStyle={displayIn3D} />
+            <Settings setThreshold={setThreshold} threshold={threshold} setDisplayIn3D={setDisplayIn3D} displayIn3D={displayIn3D} />
           </div> 
         }
         <div className={isMobile ? "w-full" : "w-9/12" }>
           <Contract setGraphData={setGraphData} setContract={setContract} setRawData={setRawData} setIsLoading={setIsLoading} />
           <ClientOnly>
             <Suspense fallback="">
-              <Graph graphData={graphData} threshold={threshold} graphStyle={displayIn3D} contract={contract} isLoading={isLoading} />
+              <Graph graphData={graphData} threshold={threshold} displayIn3D={displayIn3D} contract={contract} isLoading={isLoading} />
               { graphData.hasOwnProperty("nodes") && !isMobile && !isLoading &&
                 <CopyToClipboard text={JSON.stringify(rawData.nodes)} onCopy={handleCopy}>
                   <div>

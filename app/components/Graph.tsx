@@ -1,7 +1,7 @@
 import { ForceGraph2D, ForceGraph3D } from "react-force-graph";
 import { getColorByPercentage } from "~/utils/graphUtils";
 
-export default function Graph({ graphData, threshold, graphStyle, isLoading }: { graphData: any, threshold: number, graphStyle: boolean, contract: string, isLoading: boolean }) {
+export default function Graph({ graphData, threshold, displayIn3D, isLoading }: { graphData: any, threshold: number, displayIn3D: boolean, contract: string, isLoading: boolean }) {
     if (isLoading) {
         return (
             <div className="flex items-center justify-center py-[20vh] flex-wrap">
@@ -12,19 +12,20 @@ export default function Graph({ graphData, threshold, graphStyle, isLoading }: {
         );
     }
 
-    if (graphData.hasOwnProperty("nodes") && graphStyle) { 
+    if (graphData.hasOwnProperty("nodes") && displayIn3D) { 
         return (
             <div className="p-2">
                 <ForceGraph3D 
                     graphData={graphData}
                     backgroundColor="#13151C"
                     nodeColor={(node: any) => node.score < (threshold/100) ? "#FFF" : getColorByPercentage(node.score)}
+                    nodeLabel={(node: any) => "<div class='font-montserrat text-sm'>" + node.name + "</div><div>Score: " + (node.score * 100).toFixed(0) + "</div>"} 
                 />
             </div>
         );
     }
 
-    if (graphData.hasOwnProperty("nodes") && !graphStyle) { 
+    if (graphData.hasOwnProperty("nodes") && !displayIn3D) { 
         return (
             <div className="p-2">
                 <ForceGraph2D 
@@ -32,6 +33,7 @@ export default function Graph({ graphData, threshold, graphStyle, isLoading }: {
                     backgroundColor="#13151C"
                     nodeColor={(node: any) => node.score < (threshold/100) ? "#FFF" : getColorByPercentage(node.score)}
                     linkColor={(link: any) => "#363840"}
+                    nodeLabel={(node: any) => "<div class='font-montserrat text-sm'>" + node.name + "</div><div>Score: " + (node.score * 100).toFixed(0) + "</div>"} 
                 />
             </div>
         );

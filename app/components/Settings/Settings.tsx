@@ -1,14 +1,14 @@
 import * as Slider from '@radix-ui/react-slider';
 import * as Switch from '@radix-ui/react-switch';
 
-export default function Settings({setThreshold, threshold, setGraphStyle, graphStyle}: {setThreshold: (value: number) => void, threshold: number, setGraphStyle: (value: boolean) => void, graphStyle: boolean}) {
+export default function Settings({setThreshold, threshold, setDisplayIn3D, displayIn3D}: {setThreshold: (value: number) => void, threshold: number, setDisplayIn3D: (value: boolean) => void, displayIn3D: boolean}) {
     return (
         <div className="w-full bg-neutral-900 h-full">
             <div className="text-center font-montserrat p-2 uppercase font-semibold text-xl text-neutral-100">Settings</div>
             <div className='mt-6'>
                 <div className="w-full text-center">
                     <div className="text-center font-montserrat uppercase text-neutral-300">2D/3D</div>
-                    <Switch.Root className="SwitchRoot mx-auto text-center" defaultChecked={graphStyle} id="airplane-mode" onCheckedChange={(value) => {setGraphStyle(value)}}>
+                    <Switch.Root className="SwitchRoot mx-auto text-center" defaultChecked={displayIn3D} id="airplane-mode" onCheckedChange={(value) => {setDisplayIn3D(value)}}>
                         <Switch.Thumb className="SwitchThumb" />
                     </Switch.Root>
                 </div>

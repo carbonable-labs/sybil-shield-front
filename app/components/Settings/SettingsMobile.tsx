@@ -3,7 +3,7 @@ import { slide as Menu } from 'react-burger-menu';
 import { isMobile } from 'react-device-detect';
 import Settings from './Settings';
 
-export default function SettingsMobile({handleStateChange, menuOpen, closeMenu, setThreshold, threshold, setGraphStyle, graphStyle}: { handleStateChange: (state: State) => void, menuOpen: boolean, closeMenu: () => void, setThreshold: (threshold: number) => void, threshold: number, setGraphStyle: (graphStyle: boolean) => void, graphStyle: boolean }) {
+export default function SettingsMobile({handleStateChange, menuOpen, closeMenu, setThreshold, threshold, setDisplayIn3D, displayIn3D}: { handleStateChange: (state: State) => void, menuOpen: boolean, closeMenu: () => void, setThreshold: (threshold: number) => void, threshold: number, setDisplayIn3D: (displayIn3D: boolean) => void, displayIn3D: boolean }) {
     if (isMobile) {
         return (
             <Menu 
@@ -17,7 +17,7 @@ export default function SettingsMobile({handleStateChange, menuOpen, closeMenu, 
                 className="bg-neutral-800"
                 right={true}
                 >
-                <Settings setThreshold={setThreshold} threshold={threshold} setGraphStyle={setGraphStyle} graphStyle={graphStyle} />
+                <Settings setThreshold={setThreshold} threshold={threshold} setDisplayIn3D={setDisplayIn3D} displayIn3D={displayIn3D} />
             </Menu>
       );
     }
