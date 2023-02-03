@@ -622,6 +622,54 @@ video {
   width: 1.5rem;
 }
 
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8,0,1,1);
+  }
+
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0,0,0.2,1);
+  }
+}
+
+.animate-bounce-1 {
+  animation: bounce 1s linear infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8,0,1,1);
+  }
+
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0,0,0.2,1);
+  }
+}
+
+.animate-bounce-2 {
+  animation: bounce 1s linear infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8,0,1,1);
+  }
+
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0,0,0.2,1);
+  }
+}
+
+.animate-bounce-3 {
+  animation: bounce 1s linear infinite;
+}
+
 .cursor-pointer {
   cursor: pointer;
 }
@@ -823,6 +871,50 @@ video {
 
 .outline-0 {
   outline-width: 0px;
+}
+
+.animation-delay-500 {
+  animation-delay: 500ms;
+}
+
+.animation-delay-1000 {
+  animation-delay: 1000ms;
+}
+
+.animation-delay-\[1500\] {
+  animation-delay: 1500;
+}
+
+.animation-delay-\[2000\] {
+  animation-delay: 2000;
+}
+
+.animation-delay-\[3000\] {
+  animation-delay: 3000;
+}
+
+.animation-delay-\[1s\] {
+  animation-delay: 1s;
+}
+
+.animation-delay-\[2s\] {
+  animation-delay: 2s;
+}
+
+.animation-delay-\[3s\] {
+  animation-delay: 3s;
+}
+
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animation-delay-300 {
+  animation-delay: 300ms;
+}
+
+.animation-delay-100 {
+  animation-delay: 100ms;
 }
 
 .SliderRoot {

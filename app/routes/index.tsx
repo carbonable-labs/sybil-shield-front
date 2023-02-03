@@ -16,9 +16,10 @@ export default function Index() {
   const [graphData, setGraphData] = useState<any>({});
   const [rawData, setRawData] = useState<any>({});
   const [threshold, setThreshold] = useState(50);
-  const [graphStyle, setGraphStyle] = useState(false);
+  const [displayIn3D, setDisplayIn3D] = useState(false);
   const [contract, setContract] = useState("");
   const [copied, setCopied] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleCopy = () => {
     setCopied(true);
@@ -36,19 +37,19 @@ export default function Index() {
   return (
     <div className="mx-auto" id="outer-container">
       <Header toggleMenu={toggleMenu} menuOpen={menuOpen} />
-      <SettingsMobile handleStateChange={handleStateChange} closeMenu={closeMenu} menuOpen={menuOpen} setThreshold={setThreshold} threshold={threshold} setGraphStyle={setGraphStyle} graphStyle={graphStyle} />
+      <SettingsMobile handleStateChange={handleStateChange} closeMenu={closeMenu} menuOpen={menuOpen} setThreshold={setThreshold} threshold={threshold} setGraphStyle={setDisplayIn3D} graphStyle={displayIn3D} />
       <div className="w-full h-[calc(100vh_-_66px)] lg:h-[calc(100vh_-_80px)] flex">
         {!isMobile && 
           <div className="w-3/12 rounded-l-2xl">
-            <Settings setThreshold={setThreshold} threshold={threshold} setGraphStyle={setGraphStyle} graphStyle={graphStyle} />
+            <Settings setThreshold={setThreshold} threshold={threshold} setGraphStyle={setDisplayIn3D} graphStyle={displayIn3D} />
           </div> 
         }
         <div className={isMobile ? "w-full" : "w-9/12" }>
-          <Contract setGraphData={setGraphData} setContract={setContract} setRawData={setRawData} />
+          <Contract setGraphData={setGraphData} setContract={setContract} setRawData={setRawData} setIsLoading={setIsLoading} />
           <ClientOnly>
             <Suspense fallback="">
-              <Graph graphData={graphData} threshold={threshold} graphStyle={graphStyle} contract={contract} />
-              { graphData.hasOwnProperty("nodes") && !isMobile &&
+              <Graph graphData={graphData} threshold={threshold} graphStyle={displayIn3D} contract={contract} isLoading={isLoading} />
+              { graphData.hasOwnProperty("nodes") && !isMobile && !isLoading &&
                 <CopyToClipboard text={JSON.stringify(rawData.nodes)} onCopy={handleCopy}>
                   <div>
                   { !copied && <button className="absolute right-2 bottom-6 inline-flex items-center justify-center uppercase text-neutral-100 outine-none rounded-full px-3 py-2 bg-greenish-500 text-center hover:bg-greenish-400" onCopy={handleCopy}>

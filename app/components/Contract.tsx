@@ -2,16 +2,17 @@ import { ShieldCheckIcon } from "@heroicons/react/24/outline";
 import { useFetcher } from "@remix-run/react";
 import { useEffect, useRef } from "react";
 
-export default function Contract({setGraphData, setContract, setRawData}: {setGraphData: any,  setContract: (value: string) => void, setRawData: (value: any) => void}) {
+export default function Contract({setGraphData, setContract, setRawData, setIsLoading}: {setGraphData: any,  setContract: (value: string) => void, setRawData: (value: any) => void, setIsLoading: (value: boolean) => void}) {
     const contract = useFetcher();
     const ref = useRef<HTMLFormElement>(null);
 
     useEffect(() => {
         if (contract.type === "done" && contract.data) {
-          setGraphData(contract.data);
-          setRawData(contract.data);
+            setGraphData(contract.data);
+            setRawData(contract.data);
+            setIsLoading(false);
         }
-    }, [contract, setGraphData, setRawData]);
+    }, [contract, setGraphData, setRawData, setIsLoading]);
 
     const handleChange = (event: any) => {
         setContract(event.target.value);
@@ -30,7 +31,10 @@ export default function Contract({setGraphData, setContract, setRawData}: {setGr
                                     ref={ref}
                                 >
                                 <input type="text" className="bg-transparent text-left outline-0 border border-neutral-100 px-3 py-3 rounded-full w-full" name="contract" placeholder="Enter contract address..." aria-label="Contract address" onChange={handleChange} />
-                                <button className={`text-neutral-100 outine-none rounded-full absolute right-[4px] p-1 top-[4px] ${contract.type === 'done' && contract.data.hasOwnProperty("nodes") ? "bg-greenish-500 text-center hover:bg-greenish-400" : "bg-neutral-300 text-center hover:bg-neutral-200"} `}>
+                                <button 
+                                    className={`text-neutral-100 outine-none rounded-full absolute right-[4px] p-1 top-[4px] ${contract.type === 'done' && contract.data.hasOwnProperty("nodes") ? "bg-greenish-500 text-center hover:bg-greenish-400" : "bg-neutral-300 text-center hover:bg-neutral-200"} `}
+                                    onClick={() => {setIsLoading(true)}}
+                                >
                                     <ShieldCheckIcon className="w-[26px] p-[1px]" />
                                 </button>
                             </contract.Form>

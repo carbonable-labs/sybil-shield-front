@@ -1,7 +1,17 @@
 import { ForceGraph2D, ForceGraph3D } from "react-force-graph";
 import { getColorByPercentage } from "~/utils/graphUtils";
 
-export default function Graph({ graphData, threshold, graphStyle }: { graphData: any, threshold: number, graphStyle: boolean, contract: string }) {
+export default function Graph({ graphData, threshold, graphStyle, isLoading }: { graphData: any, threshold: number, graphStyle: boolean, contract: string, isLoading: boolean }) {
+    if (isLoading) {
+        return (
+            <div className="flex items-center justify-center py-[20vh] flex-wrap">
+                <div className="font-press-start font-bold text-2xl w-full text-center flex items-center justify-center">
+                    Loading <div className="animate-bounce-1 animation-delay-100">.</div><div className="animate-bounce-2 animation-delay-200">.</div><div className="animate-bounce-3 animation-delay-300">.</div>
+                </div>
+            </div>
+        );
+    }
+
     if (graphData.hasOwnProperty("nodes") && graphStyle) { 
         return (
             <div className="p-2">

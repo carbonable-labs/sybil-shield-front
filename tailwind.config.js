@@ -1,3 +1,4 @@
+const plugin = require('tailwindcss/plugin');
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -44,8 +45,28 @@ module.exports = {
       },
       backgroundColor: {
         'dark-40': 'rgba(11, 13, 19, 0.4);'
+      },
+      animation: {
+        'bounce-1': 'bounce 1s linear infinite',
+        'bounce-2': 'bounce 1s linear infinite',
+        'bounce-3': 'bounce 1s linear infinite'
       }
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(({ matchUtilities, theme }) => {
+      matchUtilities(
+        {
+          "animation-delay": (value) => {
+            return {
+              "animation-delay": value,
+            };
+          },
+        },
+        {
+          values: theme("transitionDelay"),
+        }
+      );
+    }),
+  ],
 }
