@@ -1,7 +1,6 @@
 import type { ActionArgs} from "@remix-run/node";
 import { json } from "@remix-run/node";
 
-import data from "~/data/result.json";
 
 /**
  * Save email adress of the user in Airtable
@@ -15,6 +14,6 @@ export async function action({ request }: ActionArgs) {
     if (contract === "") {
         return json({}, { status: 200 });
     }
-
-    return json(data);
+    const data = await fetch(`${process.env.BACKEND_URL}/${contract}`);
+    return json(await data.json());
 }
