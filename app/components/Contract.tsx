@@ -2,15 +2,16 @@ import { ShieldCheckIcon } from "@heroicons/react/24/outline";
 import { useFetcher } from "@remix-run/react";
 import { useEffect, useRef } from "react";
 
-export default function Contract({setGraphData, setContract}: {setGraphData: any,  setContract: (value: string) => void}) {
+export default function Contract({setGraphData, setContract, setRawData}: {setGraphData: any,  setContract: (value: string) => void, setRawData: (value: any) => void}) {
     const contract = useFetcher();
     const ref = useRef<HTMLFormElement>(null);
 
     useEffect(() => {
         if (contract.type === "done" && contract.data) {
           setGraphData(contract.data);
+          setRawData(contract.data);
         }
-    }, [contract, setGraphData]);
+    }, [contract, setGraphData, setRawData]);
 
     const handleChange = (event: any) => {
         setContract(event.target.value);

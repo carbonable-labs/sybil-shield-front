@@ -1,7 +1,7 @@
 import { ForceGraph2D, ForceGraph3D } from "react-force-graph";
 import { getColorByPercentage } from "~/utils/graphUtils";
 
-export default function Graph({ graphData, threshold, graphStyle, contract }: { graphData: any, threshold: number, graphStyle: boolean, contract: string }) {
+export default function Graph({ graphData, threshold, graphStyle }: { graphData: any, threshold: number, graphStyle: boolean, contract: string }) {
     if (graphData.hasOwnProperty("nodes") && graphStyle) { 
         return (
             <div className="p-2">

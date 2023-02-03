@@ -14,6 +14,7 @@ let Graph = lazy(() => import("~/components/Graph"));
 export default function Index() {
   const [menuOpen, setMenuOpen] = useState(!isMobile);
   const [graphData, setGraphData] = useState<any>({});
+  const [rawData, setRawData] = useState<any>({});
   const [threshold, setThreshold] = useState(50);
   const [graphStyle, setGraphStyle] = useState(false);
   const [contract, setContract] = useState("");
@@ -25,8 +26,6 @@ export default function Index() {
       setCopied(false);
     }, 3000);
   }
-
-
 
   const toggleMenu = useCallback(() => setMenuOpen(!menuOpen), [setMenuOpen, menuOpen]);
 
@@ -45,12 +44,12 @@ export default function Index() {
           </div> 
         }
         <div className={isMobile ? "w-full" : "w-9/12" }>
-          <Contract setGraphData={setGraphData} setContract={setContract} />
+          <Contract setGraphData={setGraphData} setContract={setContract} setRawData={setRawData} />
           <ClientOnly>
             <Suspense fallback="">
               <Graph graphData={graphData} threshold={threshold} graphStyle={graphStyle} contract={contract} />
               { graphData.hasOwnProperty("nodes") &&
-                <CopyToClipboard text={JSON.stringify(graphData.nodes)} onCopy={handleCopy}>
+                <CopyToClipboard text={JSON.stringify(rawData.nodes)} onCopy={handleCopy}>
                   <div>
                   { !copied && <button className="absolute right-2 bottom-6 inline-flex items-center justify-center uppercase text-neutral-100 outine-none rounded-full px-3 py-2 bg-greenish-500 text-center hover:bg-greenish-400" onCopy={handleCopy}>
                     <ClipboardIcon className="w-6 h-6 mr-2" />
@@ -63,7 +62,6 @@ export default function Index() {
                   </button>
                   }
                   </div>
-                  
                 </CopyToClipboard>
               }
             </Suspense>
@@ -71,7 +69,6 @@ export default function Index() {
         </div> 
       </div>
     </div>
-    
   );
 }
 
