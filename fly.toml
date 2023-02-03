@@ -1,4 +1,4 @@
-# fly.toml file generated for sybilshield on 2023-02-03T19:13:39+02:00
+# fly.toml file generated for sybilshield on 2023-02-03T21:47:25+02:00
 
 app = "sybilshield"
 kill_signal = "SIGINT"

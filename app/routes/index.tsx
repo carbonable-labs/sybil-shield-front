@@ -36,7 +36,7 @@ export default function Index() {
   return (
     <div className="mx-auto" id="outer-container">
       <Header toggleMenu={toggleMenu} menuOpen={menuOpen} />
-      <SettingsMobile handleStateChange={handleStateChange} closeMenu={closeMenu} menuOpen={menuOpen} />
+      <SettingsMobile handleStateChange={handleStateChange} closeMenu={closeMenu} menuOpen={menuOpen} setThreshold={setThreshold} threshold={threshold} setGraphStyle={setGraphStyle} graphStyle={graphStyle} />
       <div className="w-full h-[calc(100vh_-_66px)] lg:h-[calc(100vh_-_80px)] flex">
         {!isMobile && 
           <div className="w-3/12 rounded-l-2xl">
@@ -48,7 +48,7 @@ export default function Index() {
           <ClientOnly>
             <Suspense fallback="">
               <Graph graphData={graphData} threshold={threshold} graphStyle={graphStyle} contract={contract} />
-              { graphData.hasOwnProperty("nodes") &&
+              { graphData.hasOwnProperty("nodes") && !isMobile &&
                 <CopyToClipboard text={JSON.stringify(rawData.nodes)} onCopy={handleCopy}>
                   <div>
                   { !copied && <button className="absolute right-2 bottom-6 inline-flex items-center justify-center uppercase text-neutral-100 outine-none rounded-full px-3 py-2 bg-greenish-500 text-center hover:bg-greenish-400" onCopy={handleCopy}>
