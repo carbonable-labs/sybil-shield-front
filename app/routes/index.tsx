@@ -6,8 +6,8 @@ import Contract from "~/components/Contract";
 import Header from "~/components/Header";
 import Settings from "~/components/Settings/Settings";
 import SettingsMobile from "~/components/Settings/SettingsMobile";
-import {CopyToClipboard} from 'react-copy-to-clipboard';
-import { CheckCircleIcon, ClipboardIcon } from "@heroicons/react/24/outline";
+import ClipboardComponent from "~/components/Clipboard";
+
 
 let Graph = lazy(() => import("~/components/Graph"));
 
@@ -50,20 +50,7 @@ export default function Index() {
             <Suspense fallback="">
               <Graph graphData={graphData} threshold={threshold} displayIn3D={displayIn3D} contract={contract} isLoading={isLoading} />
               { graphData.hasOwnProperty("nodes") && !isMobile && !isLoading &&
-                <CopyToClipboard text={JSON.stringify(rawData.nodes)} onCopy={handleCopy}>
-                  <div>
-                  { !copied && <button className="absolute right-2 bottom-6 inline-flex items-center justify-center uppercase text-neutral-100 outine-none rounded-full px-3 py-2 bg-greenish-500 text-center hover:bg-greenish-400" onCopy={handleCopy}>
-                    <ClipboardIcon className="w-6 h-6 mr-2" />
-                    Copy data to clipboard
-                  </button>
-                  }
-                  { copied && <button className="absolute right-2 bottom-6 inline-flex items-center justify-center uppercase text-neutral-100 outine-none rounded-full px-3 py-2 bg-greenish-500 text-center hover:bg-greenish-400" onCopy={handleCopy}>
-                    <CheckCircleIcon className="w-6 h-6 mr-2" />
-                    Copied
-                  </button>
-                  }
-                  </div>
-                </CopyToClipboard>
+                <ClipboardComponent nodes={rawData.nodes} handleCopy={handleCopy} copied={copied} />
               }
             </Suspense>
           </ClientOnly>
@@ -73,6 +60,10 @@ export default function Index() {
   );
 }
 
+/**
+ * 
+ * Make sure that the component is only rendered on the client side
+ */
 export function ClientOnly({ children }: { children: ReactNode }) {
   let [mounted, setMounted] = useState(false);
   useEffect(() => {
