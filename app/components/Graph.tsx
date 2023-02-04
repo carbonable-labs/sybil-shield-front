@@ -22,8 +22,8 @@ export default function Graph({ graphData, threshold, displayIn3D, isLoading }: 
                     width={isMobile ? window.innerWidth : window.innerWidth - 300}
                     height={isMobile ? window.innerHeight - 66 : window.innerHeight - 80}
                     backgroundColor="#13151C"
-                    nodeColor={(node: any) => node.score < (threshold/100) ? "#FFF" : getColorByPercentage(node.score)}
-                    nodeLabel={(node: any) => "<div class='font-montserrat text-sm'>" + node.name + "</div><div>Score: " + (node.score * 100).toFixed(0) + "</div>"}
+                    nodeColor={(node: any) => (node.score < (threshold/100) || node.score === 0) ? "#FFF" : getColorByPercentage(node.score)}
+                    nodeLabel={(node: any) => "<div class='font-montserrat text-sm'>" + node.name + "</div><div>Score: " + (node.score * 100).toFixed(0) + "%</div>"}
                 />
             </div>
         );
@@ -37,9 +37,9 @@ export default function Graph({ graphData, threshold, displayIn3D, isLoading }: 
                     width={isMobile ? window.innerWidth : window.innerWidth - 300}
                     height={isMobile ? window.innerHeight - 66 : window.innerHeight - 80}
                     backgroundColor="#13151C"
-                    nodeColor={(node: any) => node.score < (threshold/100) ? "#FFF" : getColorByPercentage(node.score)}
+                    nodeColor={(node: any) => (node.score < (threshold/100) || node.score === 0) ? "#FFF" : getColorByPercentage(node.score)}
                     linkColor={(link: any) => "#363840"}
-                    nodeLabel={(node: any) => "<div class='font-montserrat text-sm'>" + node.name + "</div><div>Score: " + (node.score * 100).toFixed(0) + "</div>"} 
+                    nodeLabel={(node: any) => "<div class='font-montserrat text-sm'>" + node.name + "</div><div>Score: " + (node.score * 100).toFixed(0) + "%</div>"} 
                 />
             </div>
         );

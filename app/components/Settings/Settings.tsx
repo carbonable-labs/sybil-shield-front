@@ -13,13 +13,13 @@ export default function Settings({setThreshold, threshold, setDisplayIn3D, displ
                     </Switch.Root>
                 </div>
                 <div className="w-full text-center mt-12">
-                    <div className="text-center font-montserrat uppercase text-neutral-300 mt-6">Threshold</div>
+                    <div className="text-center font-montserrat uppercase text-neutral-300 mt-6">Threshold of suspiciousness</div>
                     <Slider.Root className="SliderRoot" defaultValue={[50]} max={100} step={1} aria-label="Volume" onValueChange={(value) => {setThreshold(value[0])}}>
                         <Slider.Track className="SliderTrack">
                             <Slider.Range className="SliderRange" />
                         </Slider.Track>
                         <Slider.Thumb className="SliderThumb">
-                            <div className="absolute top-6 left-[2px] text-neutral-300 text-xs">{threshold}</div>
+                            <div className="absolute top-6 left-[2px] text-neutral-300 text-xs">{threshold}%</div>
                         </Slider.Thumb>
                     </Slider.Root>
                 </div>
