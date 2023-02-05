@@ -16,11 +16,11 @@ export default function Graph({ graphData, threshold, displayIn3D, isLoading }: 
 
     if (graphData.hasOwnProperty("nodes") && displayIn3D) { 
         return (
-            <div className="w-full h-full">
+            <div className="w-full">
                 <ForceGraph3D 
                     graphData={graphData}
                     width={isMobile ? window.innerWidth : window.innerWidth - 300}
-                    height={isMobile ? window.innerHeight - 66 : window.innerHeight - 80}
+                    height={isMobile ? window.innerHeight - 206 : window.innerHeight - 220}
                     backgroundColor="#13151C"
                     nodeColor={(node: any) => (node.score < (threshold/100) || node.score === 0) ? "#FFF" : getColorByPercentage(node.score)}
                     nodeLabel={(node: any) => "<div class='font-montserrat text-sm'>" + node.name + "</div><div>Score: " + (node.score * 100).toFixed(0) + "%</div>"}
@@ -31,11 +31,11 @@ export default function Graph({ graphData, threshold, displayIn3D, isLoading }: 
 
     if (graphData.hasOwnProperty("nodes") && !displayIn3D) { 
         return (
-            <div className="w-full h-full">
+            <div className="w-full">
                 <ForceGraph2D 
                     graphData={graphData}
                     width={isMobile ? window.innerWidth : window.innerWidth - 300}
-                    height={isMobile ? window.innerHeight - 66 : window.innerHeight - 80}
+                    height={isMobile ? window.innerHeight - 206 : window.innerHeight - 220}
                     backgroundColor="#13151C"
                     nodeColor={(node: any) => (node.score < (threshold/100) || node.score === 0) ? "#FFF" : getColorByPercentage(node.score)}
                     linkColor={(link: any) => "#363840"}
